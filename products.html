@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Products & Quotes | Opalescent Insurance Agency</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<img src="Logos/0pal1.jpg" alt="Opalescent Insurance Logo" class="opallogo">
+
+<span>Opalescent Insurance</span>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Landing</a></li>
+<li><a href="home.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="products.html">Products & Quotes</a></li>
+
+</ul>
+
+<div class="menu-btn">
+
+<i class="fas fa-bars"></i>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+
+Insurance Products Designed Around You
+
+</h1>
+
+<p>
+
+Whether you're protecting your family,
+vehicle, home or business,
+Opalescent Insurance Agency has a policy
+tailored to your needs.
+
+</p>
+
+<a href="#quote" class="btn-primary">
+
+Request Quote
+
+</a>
+
+</div>
+
+<div class="hero-image">
+
+<img src="images/products.jpg" alt="Insurance">
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="services">
+
+<h2 class="section-title">
+
+Our Insurance Products
+
+</h2>
+
+<div class="service-container">
+
+<div class="card">
+
+<i class="fas fa-car-side"></i>
+
+<h3>Motor Insurance</h3>
+
+<p>
+
+Comprehensive and Third Party motor cover.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-heart-pulse"></i>
+
+<h3>Medical Insurance</h3>
+
+<p>
+
+Affordable healthcare protection.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-house"></i>
+
+<h3>Home Insurance</h3>
+
+<p>
+
+Protect your property against risks.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-building"></i>
+
+<h3>Business Insurance</h3>
+
+<p>
+
+Business assets and liability protection.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-plane"></i>
+
+<h3>Travel Insurance</h3>
+
+<p>
+
+Travel with confidence worldwide.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-user-graduate"></i>
+
+<h3>Education Insurance</h3>
+
+<p>
+
+Secure your child's future education.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-leaf"></i>
+
+<h3>Agriculture Insurance</h3>
+
+<p>
+
+Crop and livestock protection.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-user-shield"></i>
+
+<h3>Life Insurance</h3>
+
+<p>
+
+Protect those who matter most.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PREMIUM CALCULATOR -->
+
+<section class="services">
+
+<h2 class="section-title">
+
+Premium Estimator
+
+</h2>
+
+<div class="card">
+
+<label>
+
+Insurance Type
+
+</label>
+
+<br><br>
+
+<select id="insuranceType">
+
+<option value="motor">Motor Insurance</option>
+
+<option value="health">Medical Insurance</option>
+
+<option value="home">Home Insurance</option>
+
+<option value="business">Business Insurance</option>
+
+</select>
+
+<br><br>
+
+<label>
+
+Insured Amount (KES)
+
+</label>
+
+<br><br>
+
+<input
+type="number"
+id="insuredAmount"
+placeholder="Enter amount">
+
+<br><br>
+
+<button
+class="btn-primary"
+onclick="calculatePremium()">
+
+Calculate Premium
+
+</button>
+
+<br><br>
+
+<h3 id="premiumOutput"></h3>
+
+</div>
+
+</section>
+
+<!-- QUOTE REQUEST -->
+
+<section
+class="services"
+id="quote">
+
+<h2 class="section-title">
+
+Request a Quote
+
+</h2>
+
+<div class="card">
+
+<form id="quoteForm">
+
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+<br><br>
+
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+required>
+
+<br><br>
+
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number"
+required>
+
+<br><br>
+
+<select>
+
+<option>Motor Insurance</option>
+
+<option>Medical Insurance</option>
+
+<option>Home Insurance</option>
+
+<option>Business Insurance</option>
+
+<option>Travel Insurance</option>
+
+<option>Life Insurance</option>
+
+</select>
+
+<br><br>
+
+<textarea
+rows="6"
+placeholder="Tell us what you need..."></textarea>
+
+<br><br>
+
+<button
+type="submit"
+class="btn-primary">
+
+Submit Request
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+<!-- ================= INSURANCE COMPARISON ================= -->
+
+<section class="services">
+
+    <h2 class="section-title">
+        Compare Our Insurance Products
+    </h2>
+
+    <div style="overflow-x:auto;">
+
+        <table class="comparison-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Insurance</th>
+                    <th>Coverage</th>
+                    <th>Suitable For</th>
+                    <th>Claim Support</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>Motor</td>
+                    <td>Vehicle Damage & Third Party</td>
+                    <td>Vehicle Owners</td>
+                    <td>24/7</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Medical</td>
+                    <td>Hospital & Outpatient</td>
+                    <td>Individuals & Families</td>
+                    <td>24/7</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Home</td>
+                    <td>Buildings & Property</td>
+                    <td>Homeowners</td>
+                    <td>Business Hours</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Business</td>
+                    <td>Assets & Liability</td>
+                    <td>SMEs & Corporates</td>
+                    <td>Priority</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Life</td>
+                    <td>Life Protection</td>
+                    <td>Everyone</td>
+                    <td>Priority</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY CHOOSE OUR PRODUCTS ================= -->
+
+<section class="why-us">
+
+    <div class="why-image">
+
+        <img src="images/products-team.jpg" alt="Insurance Advisors">
+
+    </div>
+
+    <div class="why-content">
+
+        <h2>Why Choose Our Insurance Products?</h2>
+
+        <ul>
+
+            <li><i class="fas fa-check-circle"></i> Affordable Premiums</li>
+
+            <li><i class="fas fa-check-circle"></i> Flexible Payment Options</li>
+
+            <li><i class="fas fa-check-circle"></i> Quick Claim Processing</li>
+
+            <li><i class="fas fa-check-circle"></i> Nationwide Service Network</li>
+
+            <li><i class="fas fa-check-circle"></i> Expert Insurance Advisors</li>
+
+            <li><i class="fas fa-check-circle"></i> Trusted Insurance Partners</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="services">
+
+    <h2 class="section-title">
+
+        Frequently Asked Questions
+
+    </h2>
+
+    <div class="card">
+
+        <h3>How long does it take to receive a quotation?</h3>
+
+        <p>
+
+            Most quotations are prepared within one business day after we receive your request.
+
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Can I customize my insurance package?</h3>
+
+        <p>
+
+            Yes. Our advisors will tailor a policy based on your specific requirements.
+
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>How do I make a claim?</h3>
+
+        <p>
+
+            Contact our claims department immediately and provide the required documents.
+            Our team will guide you through every step.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= CALL TO ACTION ================= -->
+
+<section class="cta">
+
+    <h2>
+
+        Ready to Get Protected?
+
+    </h2>
+
+    <p>
+
+        Speak with one of our experienced insurance advisors today.
+
+    </p>
+
+    <a href="#quote" class="btn-primary">
+
+        Request Your Quote
+
+    </a>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>Opalescent Insurance Agency</h3>
+
+            <p>
+
+                Protecting your future with trusted insurance solutions.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <ul>
+
+                <li><a href="index.html">Landing</a></li>
+
+                <li><a href="home.html">Home</a></li>
+
+                <li><a href="about.html">About</a></li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h3>Contact Us</h3>
+
+            <p><i class="fas fa-phone"></i> +254 700 000 000</p>
+
+            <p><i class="fas fa-envelope"></i> info@opalescentinsurance.com</p>
+
+            <p><i class="fas fa-location-dot"></i> Nairobi, Kenya</p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+
+        © 2026 Opalescent Insurance Agency. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
