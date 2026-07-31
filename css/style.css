@@ -310,6 +310,7 @@ section{
     text-align:center;
     box-shadow:var(--shadow);
     transition:var(--transition);
+    margin-bottom:20px;
 
 }
 
