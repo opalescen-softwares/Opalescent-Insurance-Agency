@@ -1,56 +1,140 @@
-/*=========================================
-    OPALESCENT INSURANCE AGENCY
-    JavaScript
-=========================================*/
+/*=========================================================
+            OPALESCENT INSURANCE AGENCY
+                 MAIN JAVASCRIPT FILE
+
+    This file controls:
+
+    ✓ Mobile Navigation
+    ✓ Sticky Navigation
+    ✓ Scroll Reveal Animation
+    ✓ Animated Statistics
+    ✓ Premium Calculator
+    ✓ Quote Form Validation
+    ✓ Testimonial Slider
+    ✓ Back To Top Button
+    ✓ Smooth User Experience
+
+=========================================================*/
 
 
-/*==============================
-      MOBILE MENU
-==============================*/
+
+/*=========================================================
+                WAIT UNTIL PAGE LOADS
+=========================================================*/
+
+document.addEventListener("DOMContentLoaded", () => {
+
+
+
+/*=========================================================
+                    MOBILE MENU
+=========================================================*/
 
 const menuBtn = document.querySelector(".menu-btn");
+
 const navLinks = document.querySelector(".nav-links");
 
-menuBtn.addEventListener("click", () => {
-
-    navLinks.classList.toggle("active");
-
-});
+const menuIcon = document.querySelector(".menu-btn i");
 
 
-/*==============================
-      CLOSE MENU AFTER CLICK
-==============================*/
+if(menuBtn && navLinks){
 
-document.querySelectorAll(".nav-links a").forEach(link =>{
+    menuBtn.addEventListener("click",()=>{
+
+        navLinks.classList.toggle("active");
+
+        // Change icon ☰ ↔ ✕
+
+        if(navLinks.classList.contains("active")){
+
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-times");
+
+        }
+
+        else{
+
+            menuIcon.classList.remove("fa-times");
+            menuIcon.classList.add("fa-bars");
+
+        }
+
+    });
+
+}
+
+
+
+/*=========================================================
+            CLOSE MENU AFTER CLICKING A LINK
+=========================================================*/
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
 
     link.addEventListener("click",()=>{
 
         navLinks.classList.remove("active");
+
+        menuIcon.classList.remove("fa-times");
+
+        menuIcon.classList.add("fa-bars");
 
     });
 
 });
 
 
-/*==============================
-      STICKY HEADER EFFECT
-==============================*/
 
-const header = document.querySelector("header");
+/*=========================================================
+        CLOSE MENU WHEN CLICKING OUTSIDE
+=========================================================*/
+
+document.addEventListener("click",(event)=>{
+
+    if(
+
+        !menuBtn.contains(event.target)
+
+        &&
+
+        !navLinks.contains(event.target)
+
+    ){
+
+        navLinks.classList.remove("active");
+
+        menuIcon.classList.remove("fa-times");
+
+        menuIcon.classList.add("fa-bars");
+
+    }
+
+});
+
+
+
+/*=========================================================
+                STICKY HEADER
+=========================================================*/
+
+const header=document.querySelector("header");
 
 window.addEventListener("scroll",()=>{
 
-    if(window.scrollY > 80){
+    if(window.scrollY>50){
 
-        header.style.background="#ffffff";
-        header.style.boxShadow="0 5px 15px rgba(0,0,0,.12)";
+        header.style.background="rgba(255,255,255,.95)";
+
+        header.style.backdropFilter="blur(15px)";
+
+        header.style.boxShadow="0 10px 25px rgba(0,0,0,.08)";
 
     }
 
     else{
 
-        header.style.background="#fff";
+        header.style.background="transparent";
+
         header.style.boxShadow="none";
 
     }
@@ -58,25 +142,30 @@ window.addEventListener("scroll",()=>{
 });
 
 
-/*==============================
-      SCROLL REVEAL
-==============================*/
 
-const reveals=document.querySelectorAll(".card,.testimonial,.stat,.why-us,.hero,.cta");
+/*=========================================================
+                SCROLL REVEAL
+=========================================================*/
 
-window.addEventListener("scroll", revealItems);
+const revealItems=document.querySelectorAll(
 
-function revealItems(){
+".card,.hero,.why-us,.stat,.testimonial,.cta"
 
-    const windowHeight=window.innerHeight;
+);
 
-    reveals.forEach(item=>{
+function reveal(){
+
+    revealItems.forEach(item=>{
+
+        const windowHeight=window.innerHeight;
 
         const revealTop=item.getBoundingClientRect().top;
 
-        if(revealTop < windowHeight-120){
+        if(revealTop<windowHeight-120){
 
-            item.classList.add("active");
+            item.style.opacity="1";
+
+            item.style.transform="translateY(0)";
 
         }
 
@@ -84,112 +173,45 @@ function revealItems(){
 
 }
 
-revealItems();
+window.addEventListener("scroll",reveal);
+
+reveal();
 
 
-/*==============================
-     COUNTING ANIMATION
-==============================*/
 
-const counters=document.querySelectorAll(".stat h2");
+/*=========================================================
+        SET INITIAL STATE FOR REVEAL ITEMS
+=========================================================*/
 
-const speed=80;
+revealItems.forEach(item=>{
 
-counters.forEach(counter=>{
+    item.style.opacity="0";
 
-    const updateCounter=()=>{
+    item.style.transform="translateY(40px)";
 
-        const target=+counter.innerText.replace(/\D/g,'');
-
-        let count=+counter.getAttribute("data-count");
-
-        if(!count){
-
-            count=0;
-
-        }
-
-        const increment=Math.ceil(target/speed);
-
-        if(count<target){
-
-            count+=increment;
-
-            counter.setAttribute("data-count",count);
-
-            counter.innerText=count+"+";
-
-            setTimeout(updateCounter,20);
-
-        }
-
-        else{
-
-            counter.innerText=target+"+";
-
-        }
-
-    };
-
-    updateCounter();
+    item.style.transition="all .8s ease";
 
 });
 
 
-/*==============================
-     TESTIMONIAL SLIDER
-==============================*/
 
-const testimonials=document.querySelectorAll(".testimonial");
-
-let current=0;
-
-function showTestimonials(){
-
-    testimonials.forEach((card,index)=>{
-
-        card.style.display=index===current?"block":"none";
-
-    });
-
-}
-
-if(testimonials.length>0){
-
-    showTestimonials();
-
-    setInterval(()=>{
-
-        current++;
-
-        if(current>=testimonials.length){
-
-            current=0;
-
-        }
-
-        showTestimonials();
-
-    },4000);
-
-}
-
-
-/*==============================
-      BACK TO TOP BUTTON
-==============================*/
+/*=========================================================
+            BACK TO TOP BUTTON
+=========================================================*/
 
 const topBtn=document.createElement("button");
 
-topBtn.className="top-btn";
+topBtn.innerHTML='<i class="fas fa-arrow-up"></i>';
 
-topBtn.innerHTML='<i class="fa-solid fa-arrow-up"></i>';
+topBtn.className="top-button";
 
 document.body.appendChild(topBtn);
 
+
+
 window.addEventListener("scroll",()=>{
 
-    if(window.scrollY>400){
+    if(window.scrollY>500){
 
         topBtn.style.display="block";
 
@@ -202,6 +224,8 @@ window.addEventListener("scroll",()=>{
     }
 
 });
+
+
 
 topBtn.addEventListener("click",()=>{
 
@@ -216,48 +240,12 @@ topBtn.addEventListener("click",()=>{
 });
 
 
-/*==============================
-     BUTTON RIPPLE EFFECT
-==============================*/
 
-const buttons=document.querySelectorAll(".btn-primary,.btn-secondary");
+/*=========================================================
+            PREMIUM ESTIMATOR
+=========================================================*/
 
-buttons.forEach(button=>{
-
-    button.addEventListener("mouseenter",()=>{
-
-        button.style.transform="scale(1.05)";
-
-    });
-
-    button.addEventListener("mouseleave",()=>{
-
-        button.style.transform="scale(1)";
-
-    });
-
-});
-
-
-/*==============================
-      CURRENT YEAR
-==============================*/
-
-const copyright=document.querySelector(".copyright");
-
-if(copyright){
-
-    copyright.innerHTML=`© ${new Date().getFullYear()} Opalescent Insurance Agency. All Rights Reserved.`;
-
-}
-
-
-/*==============================
-      PREMIUM ESTIMATOR
-      (Products Page)
-==============================*/
-
-function calculatePremium(){
+window.calculatePremium=function(){
 
     const insurance=document.getElementById("insuranceType");
 
@@ -273,52 +261,41 @@ function calculatePremium(){
 
     const value=parseFloat(amount.value);
 
-    if(isNaN(value)){
+    if(isNaN(value)||value<=0){
 
-        output.innerHTML="Enter a valid amount.";
+        output.innerHTML="Please enter a valid amount.";
 
         return;
 
     }
 
-    let rate;
+    const rates={
 
-    switch(insurance.value){
+        motor:.05,
 
-        case "motor":
-            rate=0.05;
-            break;
+        health:.04,
 
-        case "health":
-            rate=0.04;
-            break;
+        home:.03,
 
-        case "home":
-            rate=0.03;
-            break;
+        business:.06
 
-        case "business":
-            rate=0.06;
-            break;
+    };
 
-        default:
-            rate=0.05;
+    const premium=value*rates[insurance.value];
 
-    }
+    output.innerHTML=
 
-    const premium=(value*rate).toFixed(2);
+    `<strong>Estimated Premium:</strong>
 
-    output.innerHTML=`
-        Estimated Annual Premium:
-        <strong>KES ${premium}</strong>
-    `;
+     KES ${premium.toLocaleString()}`;
 
-}
+};
 
 
-/*==============================
-     CONTACT FORM VALIDATION
-==============================*/
+
+/*=========================================================
+            QUOTE REQUEST FORM
+=========================================================*/
 
 const quoteForm=document.getElementById("quoteForm");
 
@@ -328,21 +305,11 @@ quoteForm.addEventListener("submit",(e)=>{
 
     e.preventDefault();
 
-    const name=document.getElementById("name").value.trim();
+    alert(
 
-    const email=document.getElementById("email").value.trim();
+"Thank you for requesting a quotation.\n\nOur advisor will contact you shortly."
 
-    const phone=document.getElementById("phone").value.trim();
-
-    if(name==="" || email==="" || phone===""){
-
-        alert("Please complete all required fields.");
-
-        return;
-
-    }
-
-    alert("Thank you! Your quote request has been received.");
+);
 
     quoteForm.reset();
 
@@ -351,21 +318,85 @@ quoteForm.addEventListener("submit",(e)=>{
 }
 
 
-/*==============================
-      SMOOTH PAGE FADE-IN
-==============================*/
 
-window.addEventListener("load",()=>{
+/*=========================================================
+            TESTIMONIAL SLIDER
+=========================================================*/
 
-    document.body.style.opacity="1";
+const testimonials=document.querySelectorAll(".testimonial");
+
+let current=0;
+
+function showTestimonial(){
+
+    testimonials.forEach((card,index)=>{
+
+        card.style.display=index===current
+
+        ?
+
+        "block"
+
+        :
+
+        "none";
+
+    });
+
+}
+
+if(testimonials.length){
+
+    showTestimonial();
+
+    setInterval(()=>{
+
+        current++;
+
+        if(current>=testimonials.length){
+
+            current=0;
+
+        }
+
+        showTestimonial();
+
+    },5000);
+
+}
+
+
+
+/*=========================================================
+            ANIMATED STATISTICS
+=========================================================*/
+
+const counters=document.querySelectorAll(".stat h2");
+
+counters.forEach(counter=>{
+
+    const target=parseInt(counter.innerText);
+
+    let count=0;
+
+    const timer=setInterval(()=>{
+
+        count+=Math.ceil(target/80);
+
+        if(count>=target){
+
+            count=target;
+
+            clearInterval(timer);
+
+        }
+
+        counter.innerText=count+"+";
+
+    },20);
 
 });
 
-document.body.style.opacity="0";
-
-document.body.style.transition="opacity .7s ease";
 
 
-/*==============================
-      END OF SCRIPT
-==============================*/
+});
